@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return check();"></form>
+        <p>Enter a number between 2 and 10</p>
+        </br>
+        <input type="text" id="startValue" name="startValue">
+        <span>by</span>
+        <input type="text" id="endValue" name="endValue">
+        </br></br>
+        <button onclick="generateTable()">Click here when ready</button>
+        </br></br>
+    </form>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function check() {
+            var x = document.getElementById("startValue").value;
+            var y = document.getElementById("endValue").value;
+        
+            if (x>10 || y>10 || x<2 || y<2) {
+                alert("Please Enter Numbers between 2 and 10")
+            }
+            return false
+        }
+        
+        function generateTable()
+        {
+            var a = document.getElementById("startValue").value;
+            var b = document.getElementById("endValue").value;
+        
+            // Clears Table
+            document.getElementById("tableContainer").innerHTML = "";
+                    
+            for (yy = 1; yy <= a; yy++) // Row Loop
+            {
+                var row = "";
+
+                for (counter3 = 1; counter3 <= b; counter3++) // Column Loop
+                {
+                    row += (yy * counter3) + " ";
+                }
+                // Printing
+                document.getElementById("tableContainer").innerHTML += row.trim() + "<br>";
+            }
+        }        
+    </script>
+
+</body>
+</html>
