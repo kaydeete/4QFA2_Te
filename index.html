@@ -3,54 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>12.2 - Multiplication Generator Table</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form onsubmit="return check();"></form>
-        <p>Enter a number between 2 and 10</p>
-        </br>
-        <input type="text" id="startValue" name="startValue">
-        <span>by</span>
-        <input type="text" id="endValue" name="endValue">
-        </br></br>
-        <button onclick="generateTable()">Click here when ready</button>
-        </br></br>
-    </form>
+    <p>[Enter a number between 2 and 10]</p>
+    </br>
+    <input type="text" id="startValue" name="startValue">
+    <span>by</span>
+    <input type="text" id="endValue" name="endValue">
+    </br></br>
+    <button onclick="generateTable();">Click here when ready</button>
+    </br></br>
 
     <div id="tableContainer"></div>
 
     <script>
-        function check() {
-            var x = document.getElementById("startValue").value;
-            var y = document.getElementById("endValue").value;
+
+        function check(x,y)
+        {
+            x = document.getElementById("startValue").value;
+            y = document.getElementById("endValue").value;
         
-            if (x>10 || y>10 || x<2 || y<2) {
-                alert("Please Enter Numbers between 2 and 10")
+            if (x > 10 || y > 10 || x < 2 || y < 2) {
+                alert("Please Enter Numbers between 2 and 10");
+                return false;
             }
-            return false
+            return true;
         }
-        
+
         function generateTable()
         {
             var a = document.getElementById("startValue").value;
             var b = document.getElementById("endValue").value;
-        
+            if (!check(a, b)) {
+                return; // Exit if check fails
+            }
+            
             // Clears Table
             document.getElementById("tableContainer").innerHTML = "";
-                    
-            for (yy = 1; yy <= a; yy++) // Row Loop
-            {
-                var row = "";
 
-                for (counter3 = 1; counter3 <= b; counter3++) // Column Loop
-                {
-                    row += (yy * counter3) + " ";
+            var table = "<table>";
+            for (counter1 = 1; counter1 <= a; counter1++) { // Row Loop
+                table += "<tr>";
+                for (counter2 = 1; counter2 <= b; counter2++) { // Column Loop
+                    table += "<td>" + (counter1 * counter2) + "</td>";
                 }
-                // Printing
-                document.getElementById("tableContainer").innerHTML += row.trim() + "<br>";
+                table += "</tr>";       
             }
+            table += "</table>";
+
+            // Printing
+            document.getElementById("tableContainer").innerHTML = table;
+                
         }        
     </script>
-
 </body>
 </html>
